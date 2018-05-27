@@ -1,0 +1,32 @@
+<section class="meetings cf">
+	<h5>Your Notifications</h5>
+	
+	<div class="meeting" ng-repeat="notif in notification" style="width:40%;" ng-if="notif.notificationType == 'Collaboration Request'">
+	  <br/>
+	  <div class="projectInfo" align="left">
+	    <span class="text"><b>From : </b>{{notif.from}}</span><br/>
+	    <span class="text"><b>Message : </b>{{notif.message}}</span><br/>
+	    <span class="text"><b>Project : </b>{{notif.projectName}}</span><br/>
+	    <a href = "#/{{notif.username}}/viewcollabprofile" style="margin-left:32%;">View profile</a>
+	    <br/>
+	    <button ng-click = 'addCollaborator(notif, notification)' class="btn" style="float:left;">Accept</button>
+	    <button ng-click = 'rejectCollaborator(notif, notification)' class="btn" style="float:right;">Reject</button>
+	  </div>
+	</div><!-- Notifications List -->
+
+	<div class="meeting" ng-repeat="(key, notif) in notification" style="width:40%;" ng-if="notif.notificationType == 'Collaboration Response'">
+	  <br/>
+	  <div class="projectInfo" align="left">
+	    <span class="text"><b>From : </b>{{notif.from}}</span><br/>
+	    <span class="text"><b>Message : </b>{{notif.message}}</span><br/>
+	    <span class="text"><b>Project : </b>{{notif.projectName}}</span><br/>
+	    <br/>
+	    <button ng-click = 'deleteNotification(key, notif.to)' class="btn" style="float:left;">Okay</button>
+	  </div>
+	</div><!-- Notifications List -->
+
+	<div ng-if="howManyNotifications == 0">
+		<br/><br/>
+		<h5><b>You have no new notifications.</b></h5>
+	</div>
+</section>

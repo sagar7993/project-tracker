@@ -1,0 +1,74 @@
+<h5>Your Projects</h5>
+<h5 ng-if="howManyProjects==0">You do not own any projects at this time.</h5>
+
+<table style="width:100%!important;" align="center" ng-if="howManyProjects>0">
+  
+  <tr>
+    
+    <td style="width:50%!important;border:1px solid black;padding-left:11%!important;"><b>Open Projects</b></td>
+    <td style="width:50%!important;border:1px solid black;padding-left:11%!important;"><b>Closed Projects</b></td>
+
+  </tr>
+
+  <tr>
+
+    <td style="width:50%!important;border:1px solid black;">
+      <ul>
+        <li ng-repeat="(key, project) in projects" ng-if="project.projectStatus=='Open'" style="margin-left:10%;">
+            <span><b>Project Title : </b>{{project.projectTitle}}</span><br/>
+            <span><b>Project Owner : </b>{{project.projectOwner}}</span><br/>
+            <span><b>Project Summary : </b>{{project.projectSummary}}</span><br/>
+            <span><b>Project Start Date : </b>{{project.projectStartDate}}</span><br/>
+            <span><b>Project Status : </b>{{project.projectStatus}}</span><br/><br/>
+            <div style="margin-left:35%!important;">
+              <a class="btn btn-right tooltip" 
+                ng-click="moveClosed(key)">
+                <span>Mark project as closed</span></a>
+            </div>
+        </li>
+      </ul>
+    </td>
+
+    <td style="width:50%!important;border:1px solid black;">
+      <ul>
+        <li ng-repeat="(key, project) in projects" ng-if="project.projectStatus=='Closed'" style="margin-left:10%;">
+            <span><b>Project Title : </b>{{project.projectTitle}}</span><br/>
+            <span><b>Project Owner : </b>{{project.projectOwner}}</span><br/>
+            <span><b>Project Summary : </b>{{project.projectSummary}}</span><br/>
+            <span><b>Project Start Date : </b>{{project.projectStartDate}}</span><br/>
+            <span><b>Project Status : </b>{{project.projectStatus}}</span><br/><br/>
+            <div style="margin-left:35%!important;">
+              <a class="btn btn-left tooltip" 
+                ng-click="moveOpen(key)">
+                <span>Mark project as open</span></a>
+            </div>
+        </li>
+      </ul>
+    </td>
+
+  </tr>
+
+</table>
+
+<div ng-if="howManyCollaboratedProjects>0">
+  <br/>
+  <br/>
+  <h5>You are currently collaborating on the following projects : </h5><br/>
+  <ul class="userlist cf" align="left">
+    <li ng-class="userstate" ng-repeat="(key, project) in collaboratedProjects" ng-if="project.projectStatus=='Open'">
+      <a ng-href="#/pipeline/{{project.projectOwner}}/{{project.projectId}}/showpipeline">
+        <div class="checkin">
+          <br/>
+          <div align="left" style="margin-left:10%;">
+            <h6><b>Project Owner</b> : {{project.projectOwner}}</h6>
+            <h6><b>Project Title</b> : {{project.projectTitle}}</h6>
+            <h6><b>Project Summary</b> : {{project.projectSummary}}</h6>
+            <h6><b>Project Status</b> : {{project.projectStatus}}</h6>
+            <h6><b>Project Start Date</b> : {{project.projectStartDate}}</h6><br/>
+          </div>
+        </div>
+      </a>
+      <button style="margin-left:10%;" ng-click="deleteCollaborator(project.projectOwner, project.projectId)" class="btn waves-effect waves-light">Delete Collaboration</button>
+    </li>
+  </ul>
+</div>

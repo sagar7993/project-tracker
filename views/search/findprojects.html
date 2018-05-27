@@ -1,0 +1,39 @@
+<div class="checkinslist">
+  <div class="search cf col s12 form-horizontal">
+    <h2>Search projects by skill</h4>
+     <form ng-submit="addRow()" class="col s12 form-horizontal" role="form" novalidate>
+      <div class="row">
+        <div class="input-field col s7">
+          <input type="text" ng-model="skill" id="skill" class="validate form-control"/>
+          <label for="skill">Search projects by skill</label>
+        </div>
+        <div class="input-field col s5">
+          <button type="submit" class="btn waves-effect waves-light">Search</button>
+        </div>
+      </div>
+
+      <table class="table" style="margin-left:25%!important;">
+        <tr ng-repeat="search in searches">
+          <div class="col s12">
+            <div class="row">
+              <div class="col s10">
+                <td>{{search.skill}}
+                </td>
+              </div>
+              <div class="col s2">
+                <td>
+                <button value="Remove" class="btn btn-delete" ng-click="removeRow(search.skill)"/>
+                </td>
+              </div>
+            </div>
+          </div>
+        </tr>
+      </table>
+      
+    </form>
+  </div>
+
+  <div id="projectListing" style="margin-left:25%!important;">
+  </div>
+
+</div>

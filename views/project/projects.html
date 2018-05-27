@@ -1,0 +1,113 @@
+<section class="meetings cf">
+
+  <div ng-hide="signedIn()" class="sorry">
+    <h3>Collegehub</h3>
+    <p>Only registered users can create and manage projects.</p>
+    <h4>Please <a ng-href="#/register">Register</a> 
+      or <a ng-href="#/login">Login</a></h4>
+    <br/>
+    <img src = "images/home.jpg" style = "width:80%;height:80%;"></img>
+    <br/>
+    <h5>
+      Collegehub is an online project management tool. Here you can add new projects and their respective requirements and skills. Users can collaborate with other project owners and track the progress of their progress with the help of our project pipeline.
+    </h5>
+  </div>
+
+  <h5 ng-if="howManyProjects==0">You have no new projects. Please fill the form below to add a new project.</h5>
+
+  <h5 ng-if="howManyProjects>0 && signedIn()">Your Projects</h5>
+  <div class="meeting" ng-repeat="(key, project) in projects" style="width:40%;">
+    <a class="btn btn-list tooltip" style="margin-top:10px!important;" 
+      ng-href="#/requirements/{{currentUser.username}}/{{key}}/requirementsList">
+      <span>View requirements</span></a>
+
+    <a class="btn btn-pipeline tooltip" style="margin-top:10px!important;"
+      ng-href="#/pipeline/{{currentUser.username}}/{{key}}/showpipeline">
+      <span>View Project Pipeline</span></a>
+
+    <a class="btn btn-checkin tooltip" style="margin-top:10px!important;"
+      ng-href="#/requirements/{{currentUser.username}}/{{key}}">
+      <span>Add requirement</span></a>
+
+    <a class="btn btn-edit tooltip" style="margin-top:10px!important;"
+      ng-href="#/project/{{currentUser.username}}/{{key}}/editProject">
+      <span>Edit project details</span></a>
+
+    <button class="btn btn-delete tooltip" style="margin-top:10px!important;"
+      confirmation-needed="Sure you want to delete the Project?"
+      ng-click="deleteProject(key)">
+      <span>Delete this Project</span></button>
+
+    <br/>
+    <div class="projectInfo" align="left">
+      <span class="text"><b>Project Title : </b>{{project.projectTitle}}</span><br/>
+      <span class="text"><b>Project Owner : </b>{{project.projectOwner}}</span><br/>
+      <span class="text"><b>Project Summary : </b>{{project.projectSummary}}</span><br/>
+      <span class="text"><b>Project Status : </b>{{project.projectStatus}}</span><br/>
+    </div>
+  </div><!-- Projects List -->
+
+  <div ng-show="signedIn()" class="displaymeetings">
+    <h4>Add Projects</h4>
+    <form class="formgroup addmeeting cf"
+      name="myform"
+      ng-submit="addProject()"
+      novalidate>
+
+      <div class="row">
+        <div class="input-field col s12">
+          <input type="text" class="validate form-control" autofocus name="projectname" ng-model="projectname" id="projectname" ng-required="true">
+          <label for="projectname">Project Name</label>
+          <p class="error validationerror" ng-show="myform.projectname.$invalid && myform.projectname.$touched">
+            Must be a valid name
+          </p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-field col s12">
+          <input type="text" class="validate form-control" name="projectsummary" ng-model="projectsummary" id="projectsummary" ng-required="true">
+          <label for="projectsummary">Project Summary</label>
+          <p class="error validationerror" ng-show="myform.projectsummary.$invalid && myform.projectsummary.$touched">
+            Must be valid text
+          </p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-field col s12">
+          <p>Project Status ( Open / Closed )</p>
+          <div class="input-field col s6">
+            <p>
+              <input class="with-gap" name="projectstatus" type="radio" id="test1"/>
+              <label for="test1">Open</label>
+            </p>
+          </div>
+          <div class="input-field col s6">
+            <p>
+              <input class="with-gap" name="projectstatus" type="radio" id="test2"/>
+              <label for="test2">Closed</label>
+            </p>
+          </div>
+        </div>
+      </div>
+      <br/><br/>
+      <div class="row">
+        <div class="input-field col s12">
+          <input type="date" class="validate form-control" name="projectstartdate" ng-model="projectstartdate" id="projectstartdate" ng-required="true">
+          <label for="projectstartdate" class="active">Project Start Date</label>
+          <p class="error validationerror" ng-show="myform.projectstartdate.$invalid && myform.projectstartdate.$touched">
+            Must be valid text
+          </p>
+        </div>
+      </div>
+
+      <div class="inputwrapper">
+      <button type="submit" class="btn waves-effect waves-light" 
+        ng-disabled="myform.$invalid" style="width:175px;">Add Project</button>
+      </div>
+    </form>
+
+    
+  </div><!-- Display Projects -->
+</section>

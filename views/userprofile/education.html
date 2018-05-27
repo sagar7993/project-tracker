@@ -1,0 +1,61 @@
+<h5>Education</h5>
+<table class="table" style="width:100%!important;margin-left:3%!important;" ng-show="testing!=''">
+	<tr style="width:100%!important;">
+		<th style="width:25%!important;"><b>Degree</b>
+		</th>
+		<th style="width:25%!important;"><b>Year</b>
+		</th>
+		<th style="width:25%!important;"><b>Marks</b>
+		</th>
+		<th style="width:25%!important;"><b>Delete</b>
+		</th>
+	</tr>
+	<tr style="width:100%!important;" ng-repeat="edu in testing">
+		<td style="width:25%!important;">{{edu.degree}}
+		</td>
+		<td style="width:25%!important;">{{edu.year}}
+		</td>
+		<td style="width:25%!important;">{{edu.score}}
+		</td>
+		<td style="width:25%!important;">
+		<button class="btn btn-delete tooltip" ng-click="removeRow(edu.degree)">
+		  <span>Delete this Education</span></button>
+		</td>
+	</tr>
+</table>
+
+<section class="profile">
+	<div class="row">
+	  <form class="col s12 form-horizontal" name="myform" role="form" ng-submit="addRow()" novalidate>
+	    <div class="row">
+	      <div class="input-field col s12">
+	        <input type="text" class="validate form-control" autofocus ng-model="degree" id="degree" name="degree" ng-required="true" class="form-control">
+	        <label for="degree">Degree</label>
+	        <p class="error validationerror" ng-show="myform.degree.$invalid && myform.degree.$touched">
+	        	Must be a valid Name
+	        </p>
+	      </div>
+	    </div>
+	    <div class="row">
+	      <div class="input-field col s12">
+	        <input type="number" class="validate form-control" autofocus name="year" ng-model="year" id="year" ng-required="true" class="form-control">
+	        <label for="year">Year</label>
+	        <p class="error validationerror" ng-show="myform.year.$invalid && myform.year.$touched">
+	        	Must be a valid year
+	        </p>
+	      </div>
+	    </div>
+	    <div class="row">
+	      <div class="input-field col s12">
+	        <input type="text" class="validate form-control" autofocus name="score" ng-model="score" id="score" ng-required="true" class="form-control">
+	        <label for="score">Marks</label>
+	        <p class="error validationerror" ng-show="myform.score.$invalid && myform.score.$touched">
+	        	Must be a valid score
+	        </p>
+	      </div>
+	    </div>
+	    <button type="submit" class="btn waves-effect waves-light" ng-disabled="myform.$invalid">Add Education</button>
+	  </form>
+	</div>
+</section>
+

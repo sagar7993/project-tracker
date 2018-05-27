@@ -1,0 +1,61 @@
+<h5>Certifications</h5>
+<table class="table" style="width:100%!important;margin-left:3%!important;" ng-show="testing!=''">
+	<tr style="width:100%!important;">
+		<th style="width:25%!important;"><b>Certification</b>
+		</th>
+		<th style="width:25%!important;"><b>Year</b>
+		</th>
+		<th style="width:25%!important;"><b>Score</b>
+		</th>
+		<th style="width:25%!important;"><b>Delete</b>
+		</th>
+	</tr>
+	<tr style="width:100%!important;" ng-repeat="certi in testing">
+		<td style="width:25%!important;">{{certi.certification}}
+		</td>
+		<td style="width:25%!important;">{{certi.year}}
+		</td>
+		<td style="width:25%!important;">{{certi.score}}
+		</td>
+		<td style="width:25%!important;">
+		<button class="btn btn-delete tooltip" ng-click="removeRow(certi.certification)">
+		  <span>Delete this Certification</span></button>
+		</td>
+	</tr>
+</table>
+
+<section class="profile">
+	<div class="row">
+	  <form class="col s12 form-horizontal" name="myform" role="form" ng-submit="addRow()" novalidate>
+	    <div class="row">
+	      <div class="input-field col s12">
+	        <input type="text" class="validate form-control" autofocus ng-model="certi" id="certi" name="certi" ng-required="true" class="form-control" value="">
+	        <label for="certi">Certification</label>
+	        <p class="error validationerror" ng-show="myform.certi.$invalid && myform.certi.$touched">
+	        	Must be a valid Name
+	        </p>
+	      </div>
+	    </div>
+	    <div class="row">
+	      <div class="input-field col s12">
+	        <input type="number" class="validate form-control" autofocus name="year" ng-model="year" id="year" ng-required="true" class="form-control">
+	        <label for="year">Year</label>
+	        <p class="error validationerror" ng-show="myform.year.$invalid && myform.year.$touched">
+	        	Must be a valid year
+	        </p>
+	      </div>
+	    </div>
+	    <div class="row">
+	      <div class="input-field col s12">
+	        <input type="text" class="validate form-control" autofocus name="score" ng-model="score" id="score" ng-required="true" class="form-control">
+	        <label for="score">Score</label>
+	        <p class="error validationerror" ng-show="myform.score.$invalid && myform.score.$touched">
+	        	Must be a valid score
+	        </p>
+	      </div>
+	    </div>
+	    <button type="submit" class="btn waves-effect waves-light" ng-disabled="myform.$invalid">Add Certification</button>
+	  </form>
+	</div>
+</section>
+

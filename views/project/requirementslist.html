@@ -1,0 +1,115 @@
+<div class="checkinslist">
+
+  <div ng-show="checkins.length==0">
+    <h5>You have not added any requirements for this project</h5>
+    <p><a ng-href="#/requirements/{{whichUser}}/{{whichProject}}">Add a new requirement</a> or go back to <a ng-href="#/home"><u>projects</u></a></p>
+    <br/><br/>
+  </div>
+
+  <div ng-hide="checkins.length==0">
+    <h5>Requirements</h5>
+    <p>Here is the list of this project's requirements.</p>
+    <p><a ng-href="#/requirements/{{whichUser}}/{{whichProject}}">Add a new requirement</a> or go back to <a ng-href="#/home"><u>projects</u></a></p>
+    <br/>
+  </div>
+
+  <ul class="userlist cf" ng-if="checkins.length>0">
+    <li ng-class="checkin.userState" ng-repeat="checkin in checkins | filter: query">
+      <div class="checkin">
+
+        <div class="buttons" ng-show = "isOwner == 'true'">
+          <button class="btn btn-meeting tooltip" 
+            ng-click="showAssignee(checkin)">
+            <span>Show the assignees</span></button>
+        </div><!-- buttons -->
+
+        <div class="buttons" ng-show = "isOwner == 'true'">
+          <a class="btn btn-edit tooltip" ng-href="#/project/{{whichUser}}/{{whichProject}}/{{checkin.$id}}/editRequirement">
+            <span>edit this requirement</span></a>
+        </div><!-- buttons -->
+
+        <div class="buttons" ng-show = "isOwner == 'true'">
+          <button class="btn btn-delete tooltip"
+            confirmation-needed="Sure you want to delete this requirement?" ng-click="deleteRequirement(checkin.$id)">
+            <span>Delete this requirement</span></button>
+        </div><!-- buttons -->
+        
+        <br/><br/>
+        
+        <div align="left">
+          <h6>Requirement Description : {{checkin.requirementDescription}}</h6>
+          <h6>Key Process Area? {{checkin.kpa}}</h6>
+          <h6>Status : {{checkin.requirementStatus}}</h6>
+          <h6>Expected Duration : {{checkin.expectedDuration}}</h6>
+          <h6>Additional Comments : {{checkin.additionalComments}}</h6>
+          <!-- <div class="date">{{checkin.date | date:"MMM d, yy h:mm a"}}</div> -->
+        </div><!-- info -->
+        
+        <div class="showcheckins" ng-show="checkin.show" id="{{checkin.$id}}">
+
+          <form class="cf" ng-submit="addAssignee(checkin)" novalidate>
+            <div ng-show="collabs=='true'" align="center">
+              <h4>Add Assignee</h4>
+              <p ng-repeat="key in collab" style="margin-left:35%!important;">
+                <input type="checkbox" id="{{checkin.$id}}/{{key.collaboratorId}}" value="{{key.collaboratorId}}^{{key.collaboratorName}}" name="{{checkin.$id}}"/>
+                <label for="{{checkin.$id}}/{{key.collaboratorId}}">{{key.collaboratorName}}</label>
+              </p>
+              <button type="submit" class="btn waves-effect waves-light"
+                ng-disabled="myform.$invalid">+</button>
+            </div>
+            <div ng-show="collabs=='false'">
+              <p><b>(You do not have any collaborators on this project. Please add a collaborator first, to add a new assignee to this requirement)</b></p>
+            </div>
+          </form>
+
+          <ul class="awardslist cf">
+            <p ng-hide="checkin.assignees"><b>(You do not have any assignees for this requirement)</b></p>
+            <p ng-show="checkin.assignees"><b>Your assignees :</b></p><br/>
+            <li class="cf" ng-repeat="(key, award) in checkin.assignees">
+              <div class="award">{{award.name}}
+                <div class="buttons" ng-show = "isOwner == 'true'">
+                  <button class="btn btn-delete tooltip" ng-click="deleteAssignee(checkin.$id, key, award.name, award.id)">
+                    <span>Remove {{award.name}} from this requirement</span></button>
+                </div><!-- buttons -->
+              </div>
+            </li>
+          </ul>
+
+        </div><!-- showcheckins -->
+
+      </div><!-- checkin -->
+    </li>
+  </ul><!-- userlist -->
+
+  <div>
+    <button class="btn waves-effect waves-light" ng-click="getCollaborators()" ng-if="credits.length==0 && isOwner == 'true'">SHOW COLLABORATORS</button>
+    <h5 ng-if="credits.length!=0">Collaborators</h5>
+    <h5 ng-if="collabs=='false'">You have no collaborators to show</h5>
+    <table align="center" ng-if="credits.length!=0" id="collabTable">
+      <tr>
+        <td><b>Name</b></td>
+        <td><b>Credits</b></td>
+        <td ng-if="isOwner=='true'"><b>Delete</b></td>
+        <td ng-if="isOwner=='true'"><b>Upvote</b></td>
+        <td ng-if="isOwner=='true'"><b>Downvote</b></td>
+      </tr>
+      <tr ng-repeat="collaborator in credits" class="collab^{{collaborator.Id}}^{{collaborator.name}}">
+        <td><b><a ng-href="#/{{collaborator.Id}}/viewcollabprofile">{{collaborator.name}}</a></b></td>
+        <td>
+          <button class="btn waves-effect waves-light">{{collaborator.credit}}</button>
+        </td>
+        <td>
+          <button ng-if="isOwner == 'true'" ng-click="deleteCollaborator(collaborator.Id, collaborator.name)" class="btn btn-delete tooltip"><span>Delete {{collaborator.name}}</span></button>
+        </td>
+        <td>
+          <button ng-if="isOwner == 'true'" ng-click="upvote(collaborator.Id, collaborator.credit, collaborator.name)" class="btn btn-upvote tooltip"><span>Upvote {{collaborator.name}}</span></button>
+        </td>
+        <td>
+          <button ng-if="isOwner == 'true'" ng-click="downvote(collaborator.Id, collaborator.credit, collaborator.name)" class="btn btn-downvote tooltip"><span>Downvote {{collaborator.name}}</span></button>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <!-- Show Collaborators -->
+
+</div><!-- checkinslist -->

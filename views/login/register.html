@@ -1,0 +1,48 @@
+<section class="register">
+  <div class="row">
+  <h4>Register</h4>
+    <form class="col s12 form-horizontal" name="myform" role="form" ng-submit="register()" novalidate>
+      <p>Register to access collegehub!</p>
+      <br>
+      <p class="error formerror" ng-show="message">{{ message }}</p>
+      <div class="row">
+        <div class="input-field col s12">
+          <input type="text" class="validate form-control" autofocus name="firstname" ng-model="user.firstname" id="firstname" ng-required="true" class="form-control">
+          <label for="firstname">First Name</label>
+          <p class="error validationerror" ng-show="myform.firstname.$invalid && myform.firstname.$touched">
+            Must be a valid first name
+          </p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input type="text" class="validate form-control" autofocus name="lastname" ng-model="user.lastname" id="lastname" ng-required="true" class="form-control">
+          <label for="lastname">Last Name</label>
+          <p class="error validationerror" ng-show="myform.lastname.$invalid && myform.lastname.$touched">
+            Must be a valid last name
+          </p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input type="email" class="validate form-control" autofocus name="email" ng-model="user.email" id="email" ng-required="true" class="form-control">
+          <label for="email">Email</label>
+          <p class="error validationerror" ng-show="myform.email.$invalid && myform.email.$touched">
+            Must be an email address
+          </p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input type="password" class="validate form-control" autofocus name="password" ng-model="user.password" id="password" ng-required="true" class="form-control">
+          <label for="password">Password</label>
+          <p class="error validationerror" ng-show="myform.password.$invalid && myform.password.$touched">
+            Must be a valid value
+          </p>
+        </div>
+      </div>
+      <button type="submit" class="btn waves-effect waves-light" ng-disabled="myform.$invalid">Register</button>
+      <div align="center" style="margin-left:45%;"><p>OR <a href="#/login"><u>Login</u></a></p></div>
+    </form>
+  </div>
+</section>

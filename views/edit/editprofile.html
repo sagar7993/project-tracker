@@ -1,0 +1,38 @@
+<h1>Edit Profile</h1>
+<section class="profile">
+  <div class="row">
+    <form class="col s12 form-horizontal" name="myform" role="form" ng-submit="edit()" novalidate>
+      <div class="row">
+        <div class="input-field col s6">
+          <i class="mdi-action-account-circle prefix"></i>
+          <input value="{{profileData.firstname}}" id="firstname" type="text" class="validate form-control" name="firstname" ng-required="true">
+          <label class="active" for="firstname">First Name</label>
+        </div>
+        <div class="input-field col s6">
+          <i class="mdi-action-account-circle prefix"></i>
+          <input value="{{profileData.lastname}}" id="lastname" type="text" class="validate form-control" name="lastname" ng-required="true">
+          <label class="active" for="lastname">Last Name</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <i class="mdi-social-cake prefix"></i>
+          <input type="date" class="validate form-control" name="dob" id="dob" ng-required="true" value="{{profileData.date}}">
+          <label for="projectstartdate" class="active">Birth Date</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <i class="mdi-communication-phone prefix"></i>
+          <input type="number" class="validate form-control" name="phone" id="phone" ng-required="true" value="{{profileData.phoneNumber}}">
+          <label for="phone" class="active">Phone Number</label>
+          <p class="error validationerror" ng-show="myform.phone.$invalid && myform.phone.$touched">
+            Must be a valid number
+          </p>
+        </div>
+      </div>
+      <button type="submit" class="btn waves-effect waves-light" ng-disabled="myform.$invalid">Save Changes</button>
+      <br/><br/><br/><br/>
+    </form>
+  </div>
+</section>

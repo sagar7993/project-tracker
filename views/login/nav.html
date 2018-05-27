@@ -1,0 +1,13 @@
+<div class="table">
+  <ul style="margin-left:50px!important;">
+    <li class="waves-effect waves-light"><a ng-href="#/home">CollegeHub</a></li>
+    <li class="waves-effect waves-light" ng-show="currentUser">
+      <a ng-href="#/home">Projects <span ng-if="howManyProjects>0">({{howManyProjects}})</span></a>
+  	</li>
+  	<li class="waves-effect waves-light" ng-show="currentUser">
+  		<a ng-href="#/notification">Notifications <span ng-if="howManyNotifications>0">({{howManyNotifications}})</span></a>
+  	</li>
+    <li class="waves-effect waves-light" ng-hide="currentUser"><a ng-href="#/login">Login</a></li>
+    <li class="waves-effect waves-light" ng-hide="currentUser"><a ng-href="#/register">Register</a></li>
+  </ul>
+</div>

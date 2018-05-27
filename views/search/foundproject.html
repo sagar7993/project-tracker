@@ -1,0 +1,60 @@
+<h3>{{projectName.projectTitle}}</h3>
+
+  <div class="checkinslist" align="center">
+    <span class="text"><b>Project Owner : </b>{{projectName.projectOwner}}</span><br/>
+    <span class="text"><b>Project Summary : </b>{{projectName.projectSummary}}</span><br/>
+    <span class="text"><b>Project Status : </b>{{projectName.projectStatus}}</span><br/>
+  </div>
+  <br/>
+  <button class="btn waves-effect waves-light" ng-click="collaborate()" ng-if="isOwner=='false'" 
+  ng-show="alreadySent=='false'" id = "collabButton">Collaborate</button>
+  <button disabled class="btn waves-effect waves-light" ng-if="isOwner=='false' && alreadySent=='true'">Collaboration request sent</button>
+  <button disabled class="btn waves-effect waves-light" ng-if="isOwner=='true'">You are the owner of this project</button>
+<br/><br/>
+
+<h5 ng-if="howManyRequirements == 0">No requirements have been added to this project, yet.</h5>
+<table style="width:100%!important;" align="center" ng-if="howManyRequirements>0">
+  
+  <tr style="width:100%!important;">
+    
+    <th style="width:30%!important;border:1px solid black;padding-left:12%!important;"><b>To-Do</b></th>
+    <th style="width:30%!important;border:1px solid black;padding-left:12%!important;"><b>Doing</b></th>
+    <th style="width:30%!important;border:1px solid black;padding-left:12%!important;"><b>Done</b></th>
+
+  </tr>
+
+  <tr style="width:100%!important;">
+
+    <td style="width:30%!important;border:1px solid black;">
+      <div ng-repeat="(key, requirement) in requirements" ng-if="requirement.requirementStatus=='To-Do'">
+          <span><b>Requirement Description : </b>{{requirement.requirementDescription}}</span><br/>
+          <span><b>Expected Duration : </b>{{requirement.expectedDuration}}</span><br/>
+          <span><b>Requirement Start Date : </b>{{requirement.requirementStartDate}}</span><br/>
+          <span><b>Requirement Status : </b>{{requirement.requirementStatus}}</span><br/>
+          <span><b>Additional Comments : </b>{{requirement.additionalComments}}</span><br/><br/><br/>
+      </div>
+    </td>
+
+    <td style="width:30%!important;border:1px solid black;">
+      <div ng-repeat="(key, requirement) in requirements" ng-if="requirement.requirementStatus=='Doing'">
+          <span><b>Requirement Description : </b>{{requirement.requirementDescription}}</span><br/>
+          <span><b>Expected Duration : </b>{{requirement.expectedDuration}}</span><br/>
+          <span><b>Requirement Start Date : </b>{{requirement.requirementStartDate}}</span><br/>
+          <span><b>Requirement Status : </b>{{requirement.requirementStatus}}</span><br/>
+          <span><b>Additional Comments : </b>{{requirement.additionalComments}}</span><br/><br/><br/>
+      </div>
+    </td>
+    
+    <td style="width:30%!important;border:1px solid black;">
+      <div ng-repeat="(key, requirement) in requirements" ng-if="requirement.requirementStatus=='Done'">
+          <span><b>Requirement Description : </b>{{requirement.requirementDescription}}</span><br/>
+          <span><b>Expected Duration : </b>{{requirement.expectedDuration}}</span><br/>
+          <span><b>Requirement Start Date : </b>{{requirement.requirementStartDate}}</span><br/>
+          <span><b>Requirement Status : </b>{{requirement.requirementStatus}}</span><br/>
+          <span><b>Additional Comments : </b>{{requirement.additionalComments}}</span><br/><br/><br/>
+      </div>
+    </td>
+
+  </tr>
+
+</table>

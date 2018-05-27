@@ -1,0 +1,66 @@
+<h3>Project Pipeline</h3>
+
+<h5 ng-if="howManyRequirements == 0">No requirements have been added to this project, yet.</h5>
+<table style="width:100%!important;" align="center" ng-if="howManyRequirements>0">
+  
+  <tr style="width:100%!important;">
+    
+    <th style="width:30%!important;border:1px solid black;padding-left:12%!important;"><b>To-Do</b></th>
+    <th style="width:30%!important;border:1px solid black;padding-left:12%!important;"><b>Doing</b></th>
+    <th style="width:30%!important;border:1px solid black;padding-left:12%!important;"><b>Done</b></th>
+
+  </tr>
+
+  <tr style="width:100%!important;">
+
+    <td style="width:30%!important;border:1px solid black;">
+      <div ng-repeat="(key, requirement) in requirements" ng-if="requirement.requirementStatus=='To-Do'">
+          <span><b>Requirement Description : </b>{{requirement.requirementDescription}}</span><br/>
+          <span><b>Expected Duration : </b>{{requirement.expectedDuration}}</span><br/>
+          <span><b>Requirement Start Date : </b>{{requirement.requirementStartDate}}</span><br/>
+          <span><b>Requirement Status : </b>{{requirement.requirementStatus}}</span><br/>
+          <span><b>Additional Comments : </b>{{requirement.additionalComments}}</span><br/>
+          <div style="margin-left:30%!important;" ng-if="isOwner == 'true'">
+            <a class="btn btn-right tooltip" 
+              ng-click="moveDoing(key)">
+              <span>Move to DOING stage</span></a>
+          </div>
+      </div>
+    </td>
+
+    <td style="width:30%!important;border:1px solid black;">
+      <div ng-repeat="(key, requirement) in requirements" ng-if="requirement.requirementStatus=='Doing'">
+          <span><b>Requirement Description : </b>{{requirement.requirementDescription}}</span><br/>
+          <span><b>Expected Duration : </b>{{requirement.expectedDuration}}</span><br/>
+          <span><b>Requirement Start Date : </b>{{requirement.requirementStartDate}}</span><br/>
+          <span><b>Requirement Status : </b>{{requirement.requirementStatus}}</span><br/>
+          <span><b>Additional Comments : </b>{{requirement.additionalComments}}</span><br/>
+          <div style="margin-left:20%!important;" ng-if="isOwner == 'true'">
+            <a class="btn btn-left tooltip"
+              ng-click="moveToDo(key)">
+              <span>Move to TO-DO stage</span></a>
+            <a class="btn btn-right tooltip" 
+              ng-click="moveDone(key)">
+              <span>Move to DONE stage</span></a>
+          </div>
+      </div>
+    </td>
+    
+    <td style="width:30%!important;border:1px solid black;">
+      <div ng-repeat="(key, requirement) in requirements" ng-if="requirement.requirementStatus=='Done'">
+          <span><b>Requirement Description : </b>{{requirement.requirementDescription}}</span><br/>
+          <span><b>Expected Duration : </b>{{requirement.expectedDuration}}</span><br/>
+          <span><b>Requirement Start Date : </b>{{requirement.requirementStartDate}}</span><br/>
+          <span><b>Requirement Status : </b>{{requirement.requirementStatus}}</span><br/>
+          <span><b>Additional Comments : </b>{{requirement.additionalComments}}</span><br/>
+          <div style="margin-left:30%!important;" ng-if="isOwner == 'true'">
+            <a class="btn btn-left tooltip" 
+              ng-click="moveDoing(key)">
+              <span>Move to DOING stage</span></a>
+          </div>
+      </div>
+    </td>
+
+  </tr>
+
+</table>

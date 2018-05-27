@@ -1,0 +1,85 @@
+<section class="meetings cf">
+	<h3>User Profile Of {{profileData.profileInfo.firstname}} {{profileData.profileInfo.lastname}}</h3>
+	
+	<div class="userlist cf" align="center">
+	  <br/>
+	  <div ng-class="checkin.userState" align="left" style="margin-left:25%!important;">
+	  	<div class="checkin">
+		    <span class="text"><b>Name : </b>{{profileData.profileInfo.firstname}} {{profileData.profileInfo.lastname}}</span><br/>
+		    <span class="text"><b>Email : </b>{{profileData.profileInfo.email}}</span><br/>
+		    <br/>
+		    <div style="margin-left:20%!important;">
+		    	<button class="btn waves-effect waves-light">{{profileData.profileInfo.credit}} Credits</button>
+			</div><br/>
+		</div>
+	   </div>
+
+	   <div style="margin-left:10%;">
+		<h6 ng-if="profileData.skills">{{profileData.profileInfo.firstname}}'s skills</h6><br/>
+		<table style="width:100%;!important">
+			<tr class="buttons" ng-show = "signedIn()" ng-repeat="skill in profileData.skills" ng-if="skill">
+			  <td style="width:50%;!important">Skill : <button class="btn waves-effect waves-light">{{skill.skill}}</button></td>
+			  <td style="width:50%;!important">Proficiency : <button class="btn waves-effect waves-light">{{skill.proficiency}}</button><br/></td>
+			</tr><!-- buttons -->
+		</table>
+	  	<br/>
+		<h6 ng-if="profileData.education">{{profileData.profileInfo.firstname}}'s education</h6><br/>
+		<table style="width:100%;!important">
+			<tr class="buttons" ng-show = "signedIn()" ng-repeat="edu in profileData.education" ng-if="edu">
+			  <td style="width:33%;!important">Degree : <button class="btn waves-effect waves-light">{{edu.degree}}</button></td>
+			  <td style="width:33%;!important">Score : <button class="btn waves-effect waves-light">{{edu.year}}</button></td>
+			  <td style="width:33%;!important">Year : <button class="btn waves-effect waves-light">{{edu.score}}</button><br/></td>
+			</tr><!-- buttons -->
+		</table>
+		<br/><br/>
+		<h6 ng-if="profileData.certification">{{profileData.profileInfo.firstname}}'s certifications</h6><br/>
+		<table style="width:100%;!important">
+			<tr class="buttons" ng-show = "signedIn()" ng-repeat="certi in profileData.certification" ng-if="certi">
+			  <td style="width:33%;!important">Certification : <button class="btn waves-effect waves-light">{{certi.certification}}</button></td>
+			  <td style="width:33%;!important">Score : <button class="btn waves-effect waves-light">{{certi.year}}</button></td>
+			  <td style="width:33%;!important">Year : <button class="btn waves-effect waves-light">{{certi.score}}</button><br/></td>
+			</tr><!-- buttons -->
+		</table>
+	  </div>
+	</div><!-- Profile Data -->
+
+	<ul class="userlist cf">
+	<h5 ng-if="profileData.projects.owned">Owned Projects</h5>
+	  <li ng-class="checkin.userState" ng-repeat="(key,project) in profileData.projects.owned">
+	  	<a ng-href="#/pipeline/{{project.projectOwner}}/{{key}}/showpipeline">
+		    <div class="checkin">
+		      <br/>
+		      <div align="left">
+		      	<h6><b>Project Owner</b> : {{project.projectOwner}}</h6>
+		        <h6><b>Project Title</b> : {{project.projectTitle}}</h6>
+		        <h6><b>Project Summary</b> : {{project.projectSummary}}</h6>
+		        <h6><b>Project Status</b> : {{project.projectStatus}}</h6>
+		        <h6><b>Project Start Date</b> : {{project.projectStartDate}}</h6><br/>
+		      </div>
+		  </a>
+	      <div class="buttons" ng-show = "signedIn()" ng-repeat="skill in project.skills" ng-if="project.skills">
+	        <button class="btn waves-effect waves-light">{{skill.skill}}</button>
+	      </div><!-- buttons -->
+	    </div>
+	  </li>
+	</ul>
+
+	<ul class="userlist cf">
+	<h5 ng-if="profileData.projects.collaborated">Collaborating on Projects</h5>
+	  <li ng-class="checkin.userState" ng-repeat="project in profileData.projects.collaborated">
+	  	<a ng-href="#/pipeline/{{project.projectOwner}}/{{project.projectId}}/showpipeline">
+		    <div class="checkin">
+		      <br/>
+		      <div align="left">
+		      	<h6><b>Project Owner</b> : {{project.projectOwner}}</h6>
+		        <h6><b>Project Title</b> : {{project.projectTitle}}</h6>
+		        <h6><b>Project Summary</b> : {{project.projectSummary}}</h6>
+		        <h6><b>Project Status</b> : {{project.projectStatus}}</h6>
+		        <h6><b>Project Start Date</b> : {{project.projectStartDate}}</h6><br/>
+		      </div>
+		    </div>
+		</a>
+	  </li>
+	</ul>
+
+</section>

@@ -1,0 +1,30 @@
+<section class="login">
+  <div class="row">
+  <h4>Login</h4>
+    <form class="col s12 form-horizontal" name="myform" role="form" ng-submit="login()" novalidate>
+      <p>Log-in to access the awesomeness!</p>
+      <br>
+      <p class="error formerror" ng-show="message">{{ message }}</p>
+      <div class="row">
+        <div class="input-field col s12">
+          <input type="email" class="validate form-control" autofocus name="email" ng-model="user.email" id="email" ng-required="true" class="form-control">
+          <label for="email">Email</label>
+          <p class="error validationerror" ng-show="myform.email.$invalid && myform.email.$touched">
+            Must be an email address
+          </p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input type="password" class="validate form-control" autofocus name="password" ng-model="user.password" id="password" ng-required="true" class="form-control">
+          <label for="password">Password</label>
+          <p class="error validationerror" ng-show="myform.password.$invalid && myform.password.$touched">
+            Must be a valid password
+          </p>
+        </div>
+      </div>
+      <button type="submit" class="btn waves-effect waves-light" ng-disabled="myform.$invalid">Login</button>
+      <div align="center" style="margin-left:44%;"><p>OR <a href="#/register"><u>Register</u></a></p></div>
+    </form>
+  </div>
+</section>

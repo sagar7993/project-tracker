@@ -1,0 +1,142 @@
+<section class="register" ng-show = "isOwner == 'true'">
+
+  <h4>Add the required skills for this project</h4>
+  <p>Fill out this form to add a new skill to your project or
+    <a ng-href="#/home">back to projects</a></p>
+
+  <table class="table" style="width:100%!important;margin-left:3%!important;">
+    <tr style="width:100%!important;">
+      <th style="width:25%!important;padding-left:43%!important;"><b>Skill</b>
+      </th>
+    </tr>
+    <tr style="width:100%!important;" ng-repeat="skill in testing">
+      <td style="width:25%!important;">{{skill.skill}}
+      </td>
+      <td style="width:25%!important;">
+      <button class="btn btn-delete tooltip" 
+        ng-click="removeRow(skill.skill)">
+        <span>Delete this Skill</span></button>
+      </td>
+    </tr>
+  </table>
+
+  <section class="profile">
+    <div class="row">
+      <form class="col s12 form-horizontal" name="skillForm" role="form" ng-submit="addRow()" novalidate>
+        <div class="row">
+          <div class="input-field col s12">
+            <input type="text" class="validate form-control" autofocus ng-model="skill" id="skill" name="skill" ng-required="true">
+            <label for="skill">Skill</label>
+            <p class="error validationerror" ng-show="skillForm.skill.$invalid && skillForm.skill.$touched">
+              Must be a valid Name
+            </p>
+          </div>
+        </div>
+        <button type="submit" class="btn waves-effect waves-light" ng-disabled="skillForm.$invalid">Add Skill</button>
+      </form>
+    </div>
+  </section>
+
+  <section class="profile">
+    <div class="row">
+      <form class="col s12 form-horizontal" name="myform" role="form" ng-submit="addRequirement()" novalidate>
+        <h4>Add new requirements</h4>
+        <p>Fill out this form to add a new requirement to your project or
+        <a ng-href="#/home">back to projects</a></p>
+        
+        <div class="row">
+          <div class="input-field col s12">
+            <input type="text" class="validate form-control" ng-model="requirementDesc" id="requirementDesc" name="requirementDesc" ng-required="true">
+            <label for="requirementDesc">Requirement Description</label>
+            <p class="error validationerror" ng-show="myform.requirementDesc.$invalid && myform.requirementDesc.$touched">
+              Must be valid text
+            </p>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="input-field col s12">
+            <p>Key Process Area ( Yes / No )</p>
+            <div class="input-field col s6">
+              <p>
+                <input class="with-gap" name="kpa" type="radio" id="kpa1"/>
+                <label for="kpa1">Yes</label>
+              </p>
+            </div>
+            <div class="input-field col s6">
+              <p>
+                <input class="with-gap" name="kpa" type="radio" id="kpa2"/>
+                <label for="kpa2">No</label>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="input-field col s12">
+            <p>Requirement Status ( To-Do / Doing / Done )</p>
+            <div class="input-field col s4">
+              <p>
+                <input class="with-gap" name="requirementstatus" type="radio" id="requirementstatus1"/>
+                <label for="requirementstatus1">To-Do</label>
+              </p>
+            </div>
+            <div class="input-field col s4">
+              <p>
+                <input class="with-gap" name="requirementstatus" type="radio" id="requirementstatus2"/>
+                <label for="requirementstatus2">Doing</label>
+              </p>
+            </div>
+            <div class="input-field col s4">
+              <p>
+                <input class="with-gap" name="requirementstatus" type="radio" id="requirementstatus3"/>
+                <label for="requirementstatus3">Done</label>
+              </p>
+            </div>
+          </div>
+        </div>
+        <br/><br/>
+        <div class="row">
+          <div class="input-field col s12">
+            <input type="date" class="validate form-control" ng-model="requirementStartDate" id="requirementStartDate" name="requirementStartDate" ng-required="true">
+            <label for="requirementStartDate" class="active">Requirement Start Date</label>
+            <p class="error validationerror" ng-show="myform.requirementStartDate.$invalid && myform.requirementStartDate.$touched">
+              Must be  valid date
+            </p>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="input-field col s12">
+            <input type="number" class="validate form-control" ng-model="expectedDuration" id="expectedDuration" name="expectedDuration" ng-required="true">
+            <label for="expectedDuration">Expected Duration</label>
+            <p class="error validationerror" ng-show="myform.expectedDuration.$invalid && myform.expectedDuration.$touched">
+              Must be valid text
+            </p>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="input-field col s12">
+            <input type="text" class="validate form-control" ng-model="additionalComments" id="additionalComments" name="additionalComments" ng-required="true">
+            <label for="additionalComments">Additional Comments</label>
+            <p class="error validationerror" ng-show="myform.additionalComments.$invalid && myform.additionalComments.$touched">
+              Must be valid text
+            </p>
+          </div>
+        </div>
+
+        <button type="submit" class="btn waves-effect waves-light" ng-disabled="myform.$invalid">Add Requirement</button>
+      
+      </form>
+    </div>
+  </section>
+
+</section>
+
+<section class="register" ng-show = "isOwner != 'true'">
+
+  <h4>You are not the owner of this project. Please <a ng-href="/#/login">log in</a> as the owner of this project to gain access</h4>
+  <h4>Or, go back to your <a ng-href="/#/home">projects</a></h4>
+
+</section>

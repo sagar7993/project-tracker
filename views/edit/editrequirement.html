@@ -1,0 +1,95 @@
+<section class="profile">
+  <div class="row">
+    <form class="col s12 form-horizontal" name="myform" role="form" ng-submit="editRequirement()" novalidate>
+      <h4>Edit requirement</h4><br/>
+      <p>Fill out this form to edit this requirement, or go 
+      <a ng-href="#/requirements/{{whichUser}}/{{whichProject}}/requirementsList">back to requirements list</a>  OR  <a ng-href="#/requirements/{{whichUser}}/{{whichProject}}">add a new requirement</a>  OR  <a ng-href="#/home">go back to projects</a>
+    </p>
+      
+      <div class="row">
+        <div class="input-field col s12">
+          <input type="text" class="validate form-control" id="requirementDesc/{{whichRequirement}}" name="requirementDesc" ng-required="true" value="{{requirementDetails.requirementDescription}}">
+          <label for="requirementDesc/{{whichRequirement}}" class="active">Requirement Description</label>
+          <p class="error validationerror" ng-show="myform.requirementDesc.$invalid && myform.requirementDesc.$touched">
+            Must be valid text
+          </p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-field col s12">
+          <p>Key Process Area ( Yes / No )</p>
+          <div class="input-field col s6">
+            <p>
+              <input class="with-gap" name="kpa" type="radio" id="kpa1/{{whichRequirement}}"/>
+              <label for="kpa1/{{whichRequirement}}">Yes</label>
+            </p>
+          </div>
+          <div class="input-field col s6">
+            <p>
+              <input class="with-gap" name="kpa" type="radio" id="kpa2/{{whichRequirement}}"/>
+              <label for="kpa2/{{whichRequirement}}">No</label>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-field col s12">
+          <p>Requirement Status ( To-Do / Doing / Done )</p>
+          <div class="input-field col s4">
+            <p>
+              <input class="with-gap" name="requirementstatus" type="radio" id="requirementstatus1/{{whichRequirement}}"/>
+              <label for="requirementstatus1/{{whichRequirement}}">To-Do</label>
+            </p>
+          </div>
+          <div class="input-field col s4">
+            <p>
+              <input class="with-gap" name="requirementstatus" type="radio" id="requirementstatus2/{{whichRequirement}}"/>
+              <label for="requirementstatus2/{{whichRequirement}}">Doing</label>
+            </p>
+          </div>
+          <div class="input-field col s4">
+            <p>
+              <input class="with-gap" name="requirementstatus" type="radio" id="requirementstatus3/{{whichRequirement}}"/>
+              <label for="requirementstatus3/{{whichRequirement}}">Done</label>
+            </p>
+          </div>
+        </div>
+      </div>
+      <br/><br/>
+      <div class="row">
+        <div class="input-field col s12">
+          <input type="date" class="validate form-control" id="requirementStartDate/{{whichRequirement}}" name="requirementStartDate" ng-required="true" value="{{requirementDetails.requirementStartDate}}">
+          <label for="requirementStartDate/{{whichRequirement}}" class="active">Requirement Start Date</label>
+          <p class="error validationerror" ng-show="myform.requirementStartDate.$invalid && myform.requirementStartDate.$touched">
+            Must be  valid date
+          </p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-field col s12">
+          <input type="number" class="validate form-control" id="expectedDuration/{{whichRequirement}}" name="expectedDuration" ng-required="true" value="{{requirementDetails.expectedDuration}}">
+          <label for="expectedDuration/{{whichRequirement}}" class="active">Expected Duration</label>
+          <p class="error validationerror" ng-show="myform.expectedDuration.$invalid && myform.expectedDuration.$touched">
+            Must be valid text
+          </p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-field col s12">
+          <input type="text" class="validate form-control" id="additionalComments/{{whichRequirement}}" name="additionalComments" ng-required="true" value="{{requirementDetails.additionalComments}}">
+          <label for="additionalComments/{{whichRequirement}}" class="active">Additional Comments</label>
+          <p class="error validationerror" ng-show="myform.additionalComments.$invalid && myform.additionalComments.$touched">
+            Must be valid text
+          </p>
+        </div>
+      </div>
+
+      <button type="submit" class="btn waves-effect waves-light" ng-disabled="myform.$invalid">Edit Requirement</button>
+    
+    </form>
+  </div>
+</section>

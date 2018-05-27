@@ -1,0 +1,54 @@
+<section class="meetings cf">
+  <div ng-show="signedIn()" class="displaymeetings">
+    <h4>Edit this Project</h4>
+    <form class="formgroup addmeeting cf"
+      name="myform"
+      ng-submit="editProject()"
+      novalidate>
+
+      <div class="row">
+        <div class="input-field col s12">
+          <input type="text" class="validate form-control" autofocus name="projectname" id="projectname" ng-required="true" class="form-control" value="{{projectDetails.projectTitle}}">
+          <label for="projectname" class="active">Project Name</label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-field col s12">
+          <input type="text" class="validate form-control" name="projectsummary" id="projectsummary" ng-required="true" class="form-control" value="{{projectDetails.projectSummary}}">
+          <label for="projectsummary" class="active">Project Summary</label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-field col s12">
+          <p>Project Status ( Open / Closed )</p>
+          <div class="input-field col s6">
+            <p>
+              <input class="with-gap" name="projectstatus" type="radio" id="test1"/>
+              <label for="test1">Open</label>
+            </p>
+          </div>
+          <div class="input-field col s6">
+            <p>
+              <input class="with-gap" name="projectstatus" type="radio" id="test2"/>
+              <label for="test2">Closed</label>
+            </p>
+          </div>
+        </div>
+      </div>
+      <br/><br/>
+      <div class="row">
+        <div class="input-field col s12">
+          <input type="date" class="validate form-control" name="projectstartdate" id="projectstartdate" ng-required="true" value="{{projectDetails.projectStartDate}}">
+          <label for="projectstartdate" class="active">Project Start Date</label>
+        </div>
+      </div>
+
+      <div class="inputwrapper">
+      <button type="submit" class="btn waves-effect waves-light" 
+        ng-disabled="myform.$invalid" style="width:175px;">Edit Project</button>
+      </div>
+    </form> 
+  </div><!-- Display Projects -->
+</section>
